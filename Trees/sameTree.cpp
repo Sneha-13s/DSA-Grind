@@ -39,6 +39,5 @@ int main() {
         cout << "Same Tree" << endl;
     else
         cout << "Not Same Tree" << endl;
-
     return 0;
 }
