@@ -1,0 +1,27 @@
+Same Tree
+Approach
+
+Recursively compare two trees node by node:
+
+If both nodes are null → same (base case)
+If only one is null → different
+If values don't match → different
+Otherwise, recursively check left subtrees and right subtrees — both must match (&&, not ||)
+Code
+cpp
+class Solution {
+public:
+    bool isSameTree(TreeNode* p, TreeNode* q) {
+        if (p == nullptr && q == nullptr) return true;
+        if (p == nullptr || q == nullptr) return false;
+        if (p->val != q->val) return false;
+        return isSameTree(p->left, q->left) && isSameTree(p->right, q->right);
+    }
+};
+
+Complexity
+Time: O(n) — every node visited once
+Space: O(h) — recursion stack, h = height of tree (O(log n) balanced, O(n) skewed)
+Notes
+Null checks must come before ->val access, else null pointer dereference.
+&& is required in the final return — both subtrees must match, not just one.
