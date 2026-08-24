@@ -1,0 +1,12 @@
+Concept : 
+We need to Traversal the tree in the anticlockwise or print the elements int anticlockwise
+so we are 3 parts as 
+1) Leaf Boundary (top -> bottom , no leaves )- that will walk down the left edge of the tree
+2) All Leaf Node (left -> right ) - simple DFS , collect every node with no children 
+3) Right Boundary (bottom -> top, no leaves ) - walk down the right edge , then reverse it
+The root itself is handled separately, added pnce at the very start unless it's a leaf, in which case it gets picked up by the leaves step instead.
+
+Complexity:
+	     Complexity          	      Reason
+Time   	O(n)	          Every node is visited roughly once across the three combined passes
+Space 	O(h)	          Recursion stack depth for the leaves DFS, where h = tree height
