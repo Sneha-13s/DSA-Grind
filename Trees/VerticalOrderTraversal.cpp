@@ -56,14 +56,7 @@ vector<vector<int>> verticalOrder(Node* root) {
 
 // Driver / main function
 int main() {
-    /*
-        Example tree:
-                3
-               / \
-              9   20
-                 /  \
-                15    7
-    */
+   
     Node* root = new Node(3);
     root->left = new Node(9);
     root->right = new Node(20);
