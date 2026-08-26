@@ -9,7 +9,7 @@ struct Node {
         left = right = nullptr;
     }
 };
-// Insert into a Binary Search Tree (just to build a sample tree)
+// Insert into a Binary Search Tree 
 Node* insert(Node* root, int val) {
     if (root == nullptr) return new Node(val);
     if (val < root->data)
