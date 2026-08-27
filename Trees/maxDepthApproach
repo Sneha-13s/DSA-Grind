@@ -1,0 +1,17 @@
+# Maximum Depth of Binary Tree
+
+**LC 104** | Easy | Tree, DFS, BFS
+
+## Problem
+Given root of a binary tree, find the number of nodes along the longest path from root to the farthest leaf.
+
+## Approach
+Use recursion (DFS). Depth of any node depends on the depth of its subtrees:
+
+- If node is `null` → depth is 0 (base case).
+- Otherwise → depth = 1 (for current node) + max(depth of left subtree, depth of right subtree).
+
+Recursion breaks the problem into smaller subproblems: `maxDepth(root)` calls `maxDepth(root->left)` and `maxDepth(root->right)`, and combines their results. This keeps happening until we hit `null` nodes (leaves' children), which return 0 and start unwinding the recursion.
+
+## Dry Run
+For `[3,9,20,null,null,15,7]`:
