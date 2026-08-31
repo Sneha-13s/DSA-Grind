@@ -38,7 +38,6 @@ void topView(Node* root) {
         if (node->right)
             q.push({node->right, hd + 1});
     }
-    // map is already sorted by key (horizontal distance)
     for (auto it : topViewMap)
         cout << it.second << " ";
     cout << endl;
