@@ -1,0 +1,50 @@
+vector<int>& arr (Refernce) 
+* This is just an alias to the original vector — no new memory is allocated
+* Inside the function, arr refers to the same original vector
+* If you modify arr, the original vector also changes
+* Faster because no copy is made (especially important for large vectors)
+In this '&' , the array is not copied or do not need to make new array it can store in it .
+
+vector<int> arr (by value)
+* The entire vector gets copied when the function is called
+* New memory is allocated, all elements are copied over
+* Changes inside the function do not affect the original vector
+* Slower if the vector is large (O(n) copy cost)
+the array is copied and need to make new array 
+
+The key question to ask yourself: "Is arr a new box with duplicated contents, or is arr just a second label taped onto the same box?"
+
+vector<int> arr → new box, contents copied in
+vector<int>& arr → same box, just a second label
+
+                     #include <iostream>
+                     #include <vector>
+                     using namespace std;
+                     void modifyByRef(vector<int>& arr) {
+                          arr[0] = 100;
+                     }
+                     void modifyByValue(vector<int> arr) {
+                          arr[0] = 100;
+                     }
+                     int main() {
+                       vector<int> myVector = {1, 2, 3};
+                       modifyByValue(myVector);
+                       cout << myVector[0] << endl;  // prints 1 (unchanged!)
+                       modifyByRef(myVector);
+                       cout << myVector[0] << endl;  // prints 100 (changed!)
+                     }
+What happens with modifyByValue(myVector):
+
+myVector exists in main() with {1, 2, 3}
+When you call modifyByValue(myVector), C++ makes a brand new copy of the vector and puts it inside arr
+Now there are two separate vectors in memory: myVector in main(), and arr inside the function (a duplicate)
+arr[0] = 100 changes only the duplicate
+Once the function ends, arr (the duplicate) is destroyed
+myVector in main() was never touched — still {1, 2, 3}
+
+What happens with modifyByRef(myVector):
+
+myVector still exists with {1, 2, 3} (or {100, 2, 3} if you ran modifyByValue first — but that didn't change it, so still {1,2,3})
+When you call modifyByRef(myVector), no copy is made. Inside the function, arr is just another name for myVector itself
+arr[0] = 100 is literally the same as writing myVector[0] = 100
+So myVector becomes {100, 2, 3}
