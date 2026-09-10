@@ -1,4 +1,5 @@
 map<int,vector<int>>mp
+
 Think of map as a vector where the index/key can be almost anything.
 Instead of:
 
