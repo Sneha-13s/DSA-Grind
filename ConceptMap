@@ -6,7 +6,6 @@ Instead of:
 v[0]
 v[1]
 v[2]
-
 we can write:
 
 mp[-2]
