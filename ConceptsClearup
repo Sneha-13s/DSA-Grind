@@ -1,9 +1,11 @@
 vector<int>& arr (Refernce) 
+
 * This is just an alias to the original vector — no new memory is allocated
 * Inside the function, arr refers to the same original vector
 * If you modify arr, the original vector also changes
 * Faster because no copy is made (especially important for large vectors)
 In this '&' , the array is not copied or do not need to make new array it can store in it .
+
 
 vector<int> arr (by value)
 * The entire vector gets copied when the function is called
