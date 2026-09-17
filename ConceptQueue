@@ -2,8 +2,10 @@ queue<TreeNode*> q;
 queue ke andar hum node + column rakhte hain.
 
 C++ mein do cheez ek saath rakhne ke liye pair use hota hai:
+
 pair<TreeNode*, int>
 Meaning:
+
 first  = node
 second = column
 
