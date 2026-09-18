@@ -1,0 +1,137 @@
+Understanding the Recursive Flow
+
+Consider this part of the code:
+
+if (i >= m || j >= n) {
+    return;
+}
+
+if (i == m - 1 && j == n - 1) {
+    cnt++;
+    return;
+}
+
+solve(i, j + 1);
+solve(i + 1, j);
+1. Boundary Condition
+if (i >= m || j >= n) {
+    return;
+}
+
+This condition checks whether the current position (i, j) has gone outside the grid.
+
+If the condition is true, return stops the current recursive call immediately.
+
+If the condition is false, nothing happens inside the if block and the program continues to the next statement.
+
+Since solve() is a void function, return; does not return any value. It simply exits the current function call.
+
+2. Destination Condition
+if (i == m - 1 && j == n - 1) {
+    cnt++;
+    return;
+}
+
+This condition checks whether the robot has reached the bottom-right cell.
+
+If the current position is the destination:
+
+cnt++;
+
+increases the number of valid paths by 1.
+
+Then:
+
+return;
+
+stops exploring further from that position.
+
+3. Moving Right
+solve(i, j + 1);
+
+If neither of the previous conditions is true, the robot first tries to move right.
+
+Here:
+
+i remains the same
+j increases by 1
+
+For example:
+
+(0,0)
+  ↓
+(0,1)
+  ↓
+(0,2)
+  ↓
+(0,3)
+
+The recursive calls keep increasing j along this branch until one of two things happens:
+
+Destination is reached
+        OR
+j becomes greater than or equal to n
+
+If j >= n, this condition becomes true:
+
+if (i >= m || j >= n)
+
+and the current call returns.
+
+4. Backtracking and Moving Down
+
+After:
+
+solve(i, j + 1);
+
+finishes, the program comes back to the previous function call and executes:
+
+solve(i + 1, j);
+
+Now the robot moves down.
+
+Here:
+
+i increases by 1
+j remains the same
+
+So the recursion explores both possibilities:
+
+              (i,j)
+              /   \
+           Right   Down
+         (i,j+1) (i+1,j)
+
+This process continues until every possible valid path from the top-left corner to the bottom-right corner has been explored.
+
+Example
+
+For a 2 × 3 grid:
+
+(0,0)   (0,1)   (0,2)
+(1,0)   (1,1)   (1,2)
+                   ↑
+                Destination
+
+Starting from (0,0), the recursion first explores the right side:
+
+(0,0) → (0,1) → (0,2) → (0,3)
+
+At (0,3):
+
+j >= n
+3 >= 3
+
+is true, so the function returns.
+
+It then backtracks to (0,2) and tries moving down:
+
+(0,2) → (1,2)
+
+Now (1,2) is the destination, so:
+
+cnt++;
+
+is executed.
+
+The same process of moving, returning, and exploring the other branch continues until all possible paths are checked.
