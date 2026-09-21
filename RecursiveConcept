@@ -4,12 +4,10 @@ Consider this part of the code:
 if (i >= m || j >= n) {
     return;
 }
-
 if (i == m - 1 && j == n - 1) {
     cnt++;
     return;
 }
-
 solve(i, j + 1);
 solve(i + 1, j);
 1. Boundary Condition
