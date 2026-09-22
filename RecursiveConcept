@@ -27,7 +27,6 @@ if (i == m - 1 && j == n - 1) {
     cnt++;
     return;
 }
-
 This condition checks whether the robot has reached the bottom-right cell.
 
 If the current position is the destination:
