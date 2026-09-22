@@ -14,7 +14,6 @@ solve(i + 1, j);
 if (i >= m || j >= n) {
     return;
 }
-
 This condition checks whether the current position (i, j) has gone outside the grid.
 
 If the condition is true, return stops the current recursive call immediately.
