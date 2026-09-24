@@ -1,5 +1,4 @@
 vector<int>& arr (Refernce) 
-
 * This is just an alias to the original vector — no new memory is allocated
 * Inside the function, arr refers to the same original vector
 * If you modify arr, the original vector also changes
