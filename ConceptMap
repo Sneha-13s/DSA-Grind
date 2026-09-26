@@ -16,7 +16,6 @@ mp[1]
 So:
 
 map<int, vector<int>> mp;
-
 means:
 
 For every int column, store a vector<int> of node values.
