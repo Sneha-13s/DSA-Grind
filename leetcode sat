@@ -1,0 +1,259 @@
+# Longest Subarray Divisible by K With At Most One Negation
+
+## Problem
+
+Given an integer array `nums` and an integer `k`, find the length of the longest contiguous subarray whose sum:
+
+1. Is already divisible by `k`, or
+2. Can become divisible by `k` after negating at most one element.
+
+Negating an element means:
+
+x → -x
+
+---
+
+## Example
+
+Input:
+
+nums = [4, 1, 2]
+k = 3
+
+The sum of the complete array is:
+
+4 + 1 + 2 = 7
+
+Since:
+
+7 % 3 != 0
+
+the complete array is not directly divisible by `k`.
+
+But we are allowed to negate one element.
+
+If we negate `2`:
+
+2 → -2
+
+Then:
+
+4 + 1 - 2 = 3
+
+And:
+
+3 % 3 = 0
+
+Therefore, the complete array is valid.
+
+Output:
+
+3
+
+---
+
+## Main Observation
+
+Suppose the sum of a subarray is:
+
+S
+
+If we do not negate any element, the condition is:
+
+S % k == 0
+
+Now suppose we negate an element `x`.
+
+Originally, `x` contributes:
+
++x
+
+After negation, it contributes:
+
+-x
+
+Therefore, the total sum decreases by `2x`.
+
+So the new sum becomes:
+
+newSum = S - 2x
+
+For the subarray to be valid:
+
+(S - 2x) % k == 0
+
+This can also be written as:
+
+S % k == (2x) % k
+
+This is the main mathematical observation used in the solution.
+
+---
+
+## Brute Force Approach
+
+One simple approach is:
+
+- Generate every possible subarray.
+- Calculate its sum.
+- If the sum is divisible by `k`, it is valid.
+- Otherwise, try negating every element of that subarray.
+- Check whether the new sum becomes divisible by `k`.
+
+If `x` is negated:
+
+newSum = sum - 2 * x
+
+This approach is easy to understand but can take approximately:
+
+O(n^3)
+
+time.
+
+It is not suitable when:
+
+n <= 10^5
+
+---
+
+## Better O(n²) Approach
+
+Instead of actually negating every element, use:
+
+S % k == (2x) % k
+
+While extending a subarray, store the values of:
+
+(2 * nums[i]) % k
+
+If the current subarray sum has the same remainder as one of these values, then negating that element makes the sum divisible by `k`.
+
+This reduces the solution to approximately:
+
+O(n²)
+
+This approach can work for smaller constraints, but it is still too slow when `n = 10^5`.
+
+---
+
+## Optimized Approach
+
+For the hard version:
+
+n <= 10^5
+k <= 3000
+
+we use prefix sums and modular arithmetic.
+
+Define:
+
+prefix[i] = sum of elements before index i
+
+Then the sum of subarray `[l, r]` is:
+
+S = prefix[r + 1] - prefix[l]
+
+We only need the remainder modulo `k`.
+
+### Case 1: No Negation
+
+The subarray is valid when:
+
+(prefix[r + 1] - prefix[l]) % k == 0
+
+Therefore:
+
+prefix[r + 1] % k == prefix[l] % k
+
+So if the same prefix remainder appeared earlier, we can form a subarray whose sum is divisible by `k`.
+
+---
+
+### Case 2: One Negation
+
+Suppose `nums[p] = x` is inside the subarray.
+
+After negating it:
+
+S - 2x
+
+must be divisible by `k`.
+
+Therefore:
+
+(S - 2x) % k == 0
+
+or:
+
+S % k == (2x) % k
+
+Using prefix sums:
+
+prefix[r + 1] - prefix[l] ≡ 2x (mod k)
+
+Therefore:
+
+prefix[r + 1] ≡ prefix[l] + 2x (mod k)
+
+The optimized solution keeps track of the earliest prefix indices that can satisfy these remainder conditions.
+
+Using the earliest possible index is important because:
+
+length = r - l + 1
+
+and a smaller `l` gives a longer subarray.
+
+---
+
+## Handling Negative Numbers
+
+Since `nums[i]` can be negative, C++ `%` may produce a negative remainder.
+
+Therefore, normalize the remainder using:
+
+((value % k) + k) % k
+
+This ensures that every remainder stays between:
+
+0 and k - 1
+
+---
+
+## Complexity
+
+For the optimized solution:
+
+Time Complexity: O(n + k²)
+
+Space Complexity: O(n + k)
+
+With:
+
+n <= 10^5
+k <= 3000
+
+this is much better than checking all possible subarrays.
+
+---
+
+## Key Takeaway
+
+The most important observation is:
+
+Negating `x` changes the subarray sum from:
+
+S
+
+to:
+
+S - 2x
+
+Therefore, instead of actually negating elements and recalculating sums, we can work with modular arithmetic:
+
+S % k == 0
+
+or
+
+S % k == (2x) % k
+
+This observation, combined with prefix sums and earliest remainder positions, allows the problem to be solved efficiently.
