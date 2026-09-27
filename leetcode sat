@@ -1,7 +1,6 @@
 # Longest Subarray Divisible by K With At Most One Negation
 
 ## Problem
-
 Given an integer array `nums` and an integer `k`, find the length of the longest contiguous subarray whose sum:
 
 1. Is already divisible by `k`, or
