@@ -21,3 +21,4 @@ so what we are doing using two pointer approach i and j starting with i = 0 and 
 if not then first increase the i and then swap the elements 
 at last return i+1 so it will be the final value 
 
+mm
