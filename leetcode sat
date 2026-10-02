@@ -5,7 +5,6 @@ Given an integer array `nums` and an integer `k`, find the length of the longest
 
 1. Is already divisible by `k`, or
 2. Can become divisible by `k` after negating at most one element.
-
 Negating an element means:
 
 x → -x
