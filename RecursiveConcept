@@ -43,7 +43,7 @@ stops exploring further from that position.
 
 3. Moving Right
 solve(i, j + 1);
-
+it can be said as 
 If neither of the previous conditions is true, the robot first tries to move right.
 
 Here:
