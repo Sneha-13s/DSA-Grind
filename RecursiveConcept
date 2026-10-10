@@ -74,7 +74,6 @@ if (i >= m || j >= n)
 and the current call returns.
 
 4. Backtracking and Moving Down
-
 After:
 
 solve(i, j + 1);
