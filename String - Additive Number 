@@ -1,0 +1,6 @@
+3. After selecting the first two numbers, I calculate their sum using string addition. I use string addition instead of converting them into integers because the numbers can be very large and may cause integer overflow.
+4. I compare the calculated sum with the next part of the given string. If they match, I move forward by updating the previous two numbers and repeat the same process.
+5. If the sum does not match the next part of the string, I reject that combination and try another possible split.
+6. If I successfully reach the end of the string with at least three numbers, I return true. Otherwise, I return false.
+Why Backtracking?
+I don't know which two numbers should be the starting numbers, so I try different possible combinations. I continue only when the additive sequence condition is satisfied. Hence, I use backtracking for this problem.
